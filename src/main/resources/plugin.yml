@@ -1,0 +1,14 @@
+name: WelcomeMessageDisable
+version: '${project.version}'
+main: com.itzilly.welcomemessagedisable.WelcomeMessageDisable
+api-version: 1.19
+authors: [ itzilly ]
+description: Disables join and leave messages
+website: https://itzilly.com/plugins/spigot/WelcomeMessageDisable
+commands:
+  wmd:
+    description: All commands for the plugin
+permissions:
+  wmd.commands:
+    description: Allows the command usage for this plugin
+    default: false

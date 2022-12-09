@@ -1,0 +1,5 @@
+# Should the plugin disable join messages? (Default: true)
+disable-join-message: true
+
+# Should the plugin disable leave messages? (Default: false)
+disable-quit-message: false
