@@ -38,6 +38,9 @@ If you have any issues please report them!
 `/wmd reloadConfig` Reloads the config
 <br/>
 
+`/wmd status` Shows wether default messages will be sent
+<br/>
+
 `/wmd joins enable/disable` Enable/Disable default join message
 <br/>
 
