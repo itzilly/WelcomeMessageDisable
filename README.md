@@ -20,6 +20,7 @@ If you have any issues please report them!
 1. Download
 2. Drag and drop this into your plugins folder.
 **This only works on spigot! (And it's forks, ie. Paper)**
+3. Restart your server
 
 <br/>
 
