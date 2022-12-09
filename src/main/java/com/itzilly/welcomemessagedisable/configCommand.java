@@ -45,6 +45,9 @@ public class configCommand implements CommandExecutor {
             if (subCommand.equalsIgnoreCase("reloadConfig")) {
                 reloadConfigSubCommand(player);
                 return false;
+            } else if (subCommand.equalsIgnoreCase("status")) {
+                statusSubCommand(player);
+                return false;
             }
 
             // Catch subcommand errors
@@ -65,6 +68,29 @@ public class configCommand implements CommandExecutor {
         return false;
     }
 
+    private void statusSubCommand(Player player) {
+        boolean disabledJoins = main.getConfig().getBoolean("disable-join-message");
+        boolean disabledQuits = main.getConfig().getBoolean("disable-quit-message");
+
+        String joinsMessage;
+        if (disabledJoins) {
+            joinsMessage = "Join messages are " + ChatColor.DARK_RED + "disabled";
+        } else {
+            joinsMessage = "Join messages are " + ChatColor.GREEN + "enabled";
+        }
+
+        String quitsMessage;
+        if (disabledQuits) {
+            quitsMessage = "Quit messages are " + ChatColor.DARK_RED + "disabled";
+        } else {
+            quitsMessage = "Quit messages are " + ChatColor.GREEN + "enabled";
+        }
+
+        player.sendMessage(wmdChatPrefix + "Status:");
+        player.sendMessage(wmdChatPrefix + "  > " + joinsMessage);
+        player.sendMessage(wmdChatPrefix + "  > " + quitsMessage);
+    }
+
     private void reloadConfigSubCommand(Player player) {
         player.sendMessage(wmdChatPrefix + "Config Reloaded!");
         Bukkit.getLogger().info("Config Reloaded!");
@@ -73,14 +99,14 @@ public class configCommand implements CommandExecutor {
     private void joinsSubCommand(Player player, String option) {
         // Enable join messages
         // /wmd joins true
-        if (option.equalsIgnoreCase("true")) {
+        if (option.equalsIgnoreCase("enable")) {
             enableJoinMessage();
             player.sendMessage(wmdChatPrefix + "Default join messages have been enabled!");
         }
 
         // Disable join messages
         // /wmd joins false
-        else if (option.equalsIgnoreCase("false")) {
+        else if (option.equalsIgnoreCase("disable")) {
             disableJoinMessage();
             player.sendMessage(wmdChatPrefix + "Default join messages have been disabled!");
         }
@@ -89,14 +115,14 @@ public class configCommand implements CommandExecutor {
     private void quitsSubCommand(Player player, String option) {
         // Enable quit messages
         // /wmd joins true
-        if (option.equalsIgnoreCase("true")) {
+        if (option.equalsIgnoreCase("enable")) {
             enableQuitMessage();
             player.sendMessage(wmdChatPrefix + "Default quit messages have been enabled!");
         }
 
         // Disable quit messages
         // /wmd joins false
-        else if (option.equalsIgnoreCase("false")) {
+        else if (option.equalsIgnoreCase("disable")) {
             disableQuitMessage();
             player.sendMessage(wmdChatPrefix + "Default quit messages have been disabled!");
         }
@@ -110,8 +136,9 @@ public class configCommand implements CommandExecutor {
         player.sendMessage(" ");
         player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "Commands");
         player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "  > " + ChatColor.AQUA + "reloadConfig");
-        player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "  > " + ChatColor.AQUA + "joins " + ChatColor.GREEN + "true" + ChatColor.GRAY + "/" + ChatColor.DARK_RED + "false");
-        player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "  > " + ChatColor.AQUA + "quits " + ChatColor.GREEN + "true" + ChatColor.GRAY + "/" + ChatColor.DARK_RED + "false");
+        player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "  > " + ChatColor.AQUA + "status");
+        player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "  > " + ChatColor.AQUA + "joins " + ChatColor.GREEN + "enable" + ChatColor.GRAY + "/" + ChatColor.DARK_RED + "disable");
+        player.sendMessage(wmdChatPrefix + ChatColor.YELLOW + "  > " + ChatColor.AQUA + "quits " + ChatColor.GREEN + "enable" + ChatColor.GRAY + "/" + ChatColor.DARK_RED + "disable");
         player.sendMessage(" ");
     }
 

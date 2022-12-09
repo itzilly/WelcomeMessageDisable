@@ -11,6 +11,9 @@ public final class WelcomeMessageDisable extends JavaPlugin implements Listener 
 
     @Override
     public void onEnable() {
+        Bukkit.getLogger().info("Starting WelcomeMessageDisable v1.9 by itzilly");
+        Bukkit.getLogger().info("Need help? Visit https://itzilly.com/plugins/spigot/WelcomeMessageDisable");
+
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
